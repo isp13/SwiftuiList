@@ -8,9 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    let models: [BaseModel] = [
+        FirstModel(sectionName: .first, name: "Nick Kazantsev"),
+        SecondModel(sectionName: .second, value: 13),
+        FirstModel(sectionName: .first, name: "Anas Ben Mustafa"),
+        SecondModel(sectionName: .second, value: 65476),
+        FirstModel(sectionName: .second, name: "Name"),
+        SecondModel(sectionName: .first, value: 000000)
+    ]
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        let groupedModels = Dictionary(grouping: models, by: { $0.sectionName })
+
+        VStack(spacing: 8) {
+            GenericViewHolder(viewModels: groupedModels)
+        }
     }
 }
 
